@@ -121,13 +121,7 @@ func NewLogplexLineFormatter(ll LogLine, config *Config) *LogplexLineFormatter {
 		header = strconv.Itoa(len(ll.line)) + " "
 	} else {
 		//fmt.Sprintf induces an extra allocation
-		header = strconv.Itoa(len(ll.line)+config.lengthPrefixedSyslogFrameHeaderSize) + " " +
-			"<" + config.Prival + ">" + config.Version + " " +
-			ll.when.UTC().Format(LogplexBatchTimeFormat) + " " +
-			config.Hostname + " " +
-			config.Appname + " " +
-			config.Procid + " " +
-			config.Msgid + " "
+		header = ""
 	}
 	return &LogplexLineFormatter{
 		line:        ll.line,
